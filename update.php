@@ -49,6 +49,6 @@ if ($change) {
    
     rebuild_course_cache($courseid, true);
     
-    redirect("$CFG->wwwroot/course/view.php?id=$courseid");
+    redirect("$CFG->wwwroot/course/view.php?id=$courseid&changed=s");
     
 }

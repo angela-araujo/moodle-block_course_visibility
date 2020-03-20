@@ -85,16 +85,21 @@ class block_course_visibility extends block_base {
 
             require_once($CFG->libdir.'/formslib.php'); 
             
+            $changed = optional_param('changed', 'n', PARAM_TEXT);
+            
             $link    = "$CFG->wwwroot/blocks/course_visibility/update.php?courseid=$COURSE->id&newvalue=$newvalue&change=s";
             $content = '<div class="visibility">'
                     . $iconvisibility
                     . '<h4>' . get_string('coursetextvisibility','block_course_visibility') 
 					. ' <br><span class="'.$classe.'">' . $visibility . '</span>  '. $icontooltip
-					. '</h4>' //. '<p>'. $textvisibility . '</p>'
-                    . '<a title="'. $textvisibility . '" href="'.$link.'" class="'.$classelink.'">' .$iconbutton . ' <span>' . $textbutton . '</span></a>'                    
-                    . '</div>' ;
+					. '</h4>' ;
+            $content .= (!$coursevisible)? '<a title="'. $textvisibility . '" href="'.$link.'" class="'.$classelink.'">' .$iconbutton . ' <span>' . $textbutton . '</span></a>': '';                    
+            $content .= ($changed =='s' && $coursevisible)? '<div class="alert alert-danger">Ao diponibilizar a disciplina, o processo de importação dos alunos, embora seja automático, não ocorre instantaneamente, pois ao longo do dia ambiente irá obter a lista de alunos matriculados no SAU e fará a inclusão dos mesmos nas disciplinas ativas.<br>Aguarde a próxima sincronização para que seus alunos sejam incluidos.<div>': '';
+            $content .= '</div>' ;
         }
         
+
+                
         $this->content = new stdClass;        
         $this->content->text = $content;
         $this->content->footer = '';        
