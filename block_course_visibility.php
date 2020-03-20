@@ -85,7 +85,7 @@ class block_course_visibility extends block_base {
 
             require_once($CFG->libdir.'/formslib.php'); 
             
-            $changed = optional_param('changed', 'n', PARAM_TEXT);
+            $onclick = ' onclick="alert(\'ATENÇÃO: Ao disponibilizar a disciplina, o processo de importação dos alunos a partir das pautas do SAU será automático, mas não ocorrerá instantaneamente. Por favor, aguarde algumas horas para que os alunos sejam incluídos.\');" ';
             
             $link    = "$CFG->wwwroot/blocks/course_visibility/update.php?courseid=$COURSE->id&newvalue=$newvalue&change=s";
             $content = '<div class="visibility">'
@@ -93,13 +93,10 @@ class block_course_visibility extends block_base {
                     . '<h4>' . get_string('coursetextvisibility','block_course_visibility') 
 					. ' <br><span class="'.$classe.'">' . $visibility . '</span>  '. $icontooltip
 					. '</h4>' ;
-            $content .= (!$coursevisible)? '<a title="'. $textvisibility . '" href="'.$link.'" class="'.$classelink.'">' .$iconbutton . ' <span>' . $textbutton . '</span></a>': '';                    
-            $content .= ($changed =='s' && $coursevisible)? '<div class="alert alert-danger">Ao diponibilizar a disciplina, o processo de importação dos alunos, embora seja automático, não ocorre instantaneamente, pois ao longo do dia ambiente irá obter a lista de alunos matriculados no SAU e fará a inclusão dos mesmos nas disciplinas ativas.<br>Aguarde a próxima sincronização para que seus alunos sejam incluidos.<div>': '';
+            $content .= (!$coursevisible)? '<a '. $onclick .'title="'. $textvisibility . '" href="'.$link.'" class="'.$classelink.'">' .$iconbutton . ' <span>' . $textbutton . '</span></a>': '';                    
             $content .= '</div>' ;
         }
         
-
-                
         $this->content = new stdClass;        
         $this->content->text = $content;
         $this->content->footer = '';        
