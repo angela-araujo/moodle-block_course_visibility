@@ -1,0 +1,21 @@
+.visibility{
+	text-align: center;	
+}
+.courseshow { 
+	color: #7FC241; 
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.coursehide { 
+	color: #AD4B4B; 
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.linktohide, .linktohide:hover {
+    color: #9499a3;
+	/*text-decoration: none;
+	background-color: transparent;*/
+}
+.block-region .block .header .title h2 {
+	/*display: none;*/
+}
