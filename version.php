@@ -25,5 +25,5 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'block_course_visibility'; // Full name of the plugin (used for diagnostics)
-$plugin->version   = 2016092600;        	// The current plugin version (Date: YYYYMMDDXX): Moodle 3.0 - 16 November 2015
+$plugin->version   = 2021020200;        	// The current plugin version (Date: YYYYMMDDXX): Moodle 3.0 - 16 November 2015
 $plugin->requires  = 2010112400;        	// Requires this Moodle version: Moodle 2.0 - 24 November 2010 

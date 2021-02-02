@@ -55,10 +55,12 @@ class block_course_visibility extends block_base {
         }
         
         $coursevisible = $COURSE->visible == 1;
+        
+        $content = '';
 
         $context = context_course::instance($COURSE->id);
         
-        if (has_capability('moodle/course:update', $context)) {            
+        if (has_capability('moodle/course:update', $context) && ($COURSE->id <> 1)) {            
 
             if ( $coursevisible ) {
                 $iconvisibility = $OUTPUT->pix_icon('blue_exclamation', '', 'block_course_visibility');
@@ -85,16 +87,14 @@ class block_course_visibility extends block_base {
 
             require_once($CFG->libdir.'/formslib.php'); 
             
-            $onclick = ' onclick="alert(\'ATENÇÃO: Ao disponibilizar a disciplina, o processo de importação dos alunos a partir das pautas do SAU será automático, mas não ocorrerá instantaneamente. Por favor, aguarde algumas horas para que os alunos sejam incluídos.\');" ';
-            
             $link    = "$CFG->wwwroot/blocks/course_visibility/update.php?courseid=$COURSE->id&newvalue=$newvalue&change=s";
             $content = '<div class="visibility">'
-                    . $iconvisibility
-                    . '<h4>' . get_string('coursetextvisibility','block_course_visibility') 
-					. ' <br><span class="'.$classe.'">' . $visibility . '</span>  '. $icontooltip
-					. '</h4>' ;
-            $content .= (!$coursevisible)? '<a '. $onclick .'title="'. $textvisibility . '" href="'.$link.'" class="'.$classelink.'">' .$iconbutton . ' <span>' . $textbutton . '</span></a>': '';                    
-            $content .= '</div>' ;
+                . $iconvisibility
+                . '<h4>' . get_string('coursetextvisibility','block_course_visibility')
+                . ' <br><span class="'.$classe.'">' . $visibility . '</span>  '. $icontooltip
+                . '</h4>' 
+                . '<a title="'. $textvisibility . '" href="'.$link.'" class="'.$classelink.'">' .$iconbutton . ' <span>' . $textbutton . '</span></a>'
+                . '</div>' ;
         }
         
         $this->content = new stdClass;        

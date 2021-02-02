@@ -30,8 +30,7 @@ $capabilities = array(
         'riskbitmask' => RISK_CONFIG,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
-            'all' => CAP_PROHIBIT
+        'archetypes' => array(           
             
         )
     ),

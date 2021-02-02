@@ -46,7 +46,7 @@ class course_visibility_updated extends \core\event\base {
      * @return string
      */
     public static function get_name() {
-        return get_string('eventcoursevisibilityupdated','block_course_visibility');
+        return get_string('eventcoursevisibilityupdated', 'block_course_visibility');
     }
 
     /**

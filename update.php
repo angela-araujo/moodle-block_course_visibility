@@ -25,18 +25,16 @@
 
 require_once('../../config.php');
 
-$courseid      = required_param('courseid', PARAM_NUMBER);
-$newvisibility = required_param('newvalue', PARAM_NUMBER);
+$courseid      = required_param('courseid', PARAM_INT);
+$newvisibility = required_param('newvalue', PARAM_INT);
 $change        = required_param('change', PARAM_TEXT);
 
 if ($change) {
 
     require_once($CFG->dirroot . '/course/lib.php');
-    
-    global $COURSE, $CFG;
-  
+
     course_change_visibility($courseid, $newvisibility);
-    
+
     // Trigger a course updated event.
     $event = \block_course_visibility\event\course_visibility_updated::create(array(
         'courseid' => $courseid,
@@ -45,10 +43,10 @@ if ($change) {
         'other' => array('newvisibility' => $newvisibility)
     ));
 
-    $event->trigger();    
-   
+    $event->trigger();
+
     rebuild_course_cache($courseid, true);
-    
+
     redirect("$CFG->wwwroot/course/view.php?id=$courseid");
-    
+
 }
